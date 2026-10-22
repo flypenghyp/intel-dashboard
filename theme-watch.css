@@ -411,3 +411,110 @@ html, body {
   .brand .sub { display: none; }
   .item { padding: 8px 12px 9px 10px !important; }
 }
+
+/* ==========================================================================
+   细化修正（2026-10-23，基于 1600x1000 实拍截图评审）
+   ========================================================================== */
+
+/* 1) 顶部读数：字号回收到 15px，与标签形成清晰两层 */
+.stat b { font-size: 15px !important; line-height: 1.2 !important; letter-spacing: .3px !important; }
+.stat span { font-size: 9px !important; }
+.stat { padding: 0 11px !important; }
+.stats { overflow: hidden; }
+
+/* 2) 顶部工具条：收紧，避免换行挤压 */
+.tools { gap: 4px !important; }
+.btn, .lt { padding: 3px 7px !important; font-size: 10.5px !important; }
+.tools .asset-nav, .tools .layout-tg { gap: 3px !important; }
+.conn, #connState {
+  font-family: var(--tech);
+  font-size: 9.5px !important;
+  color: var(--mute) !important;
+  letter-spacing: .3px;
+  min-width: 0 !important;
+  padding-left: 6px;
+  border-left: 1px solid var(--rule);
+}
+.conn.ok { color: var(--calm) !important; }
+@media (max-width: 1500px) {
+  .tools .layout-tg { display: none !important; }
+  .tools .asset-nav .lt:nth-child(n+5) { display: none !important; }
+}
+@media (max-width: 1300px) {
+  #soundBtn, #srcHealth { display: none !important; }
+}
+
+/* 3) 条目内的详情提示：从「卡片」降为「一行提示」 */
+.it-detail {
+  background: none !important;
+  border: 0 !important;
+  border-top: 1px solid var(--rule) !important;
+  border-radius: 0 !important;
+  margin-top: 6px !important;
+  padding: 5px 0 0 !important;
+  font-size: 10.5px !important;
+  color: var(--mute) !important;
+  display: flex !important;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+.it-detail .it-ai,
+.it-detail .it-ol,
+.it-detail .it-mkt,
+.it-detail .it-why { border: 0 !important; background: none !important; padding: 0 !important; margin: 0 !important; }
+.it-detail .it-why { color: var(--mute) !important; }
+.it-detail .it-why b { color: var(--dim) !important; font-weight: 500; }
+.it-detail .ai-hz, .it-detail .ol-h { color: var(--mute) !important; font-size: 10px !important; }
+
+/* 悬停浮层：单层、无圆角、细框 */
+.hover-tip {
+  display: none !important;
+  background: rgba(9, 14, 20, .98) !important;
+  border: 1px solid var(--rule2) !important;
+  border-radius: 1px !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, .65) !important;
+}
+.item:hover .hover-tip { display: block !important; }
+
+/* 4) 「实时流 / 重要事件」分组头：更像值班台分区标题 */
+.feed-sec > .fh-title, .feed-sec .fh-title {
+  font-size: 10.5px !important;
+  letter-spacing: 1.2px !important;
+  color: var(--mute) !important;
+  font-weight: 500 !important;
+}
+.feed-stamp { color: var(--mute) !important; font-size: 9.5px !important; }
+.feed-sec { border-bottom: 1px solid var(--rule) !important; }
+
+/* 5) 右栏 tabs（告警/简报/日志） */
+.tabs { border-bottom: 1px solid var(--rule) !important; gap: 0 !important; }
+.tab {
+  border: 0 !important;
+  border-bottom: 1px solid transparent !important;
+  border-radius: 0 !important;
+  background: none !important;
+  color: var(--mute) !important;
+  font-size: 11px !important;
+  padding: 6px 10px !important;
+}
+.tab.active { color: var(--amber) !important; border-bottom-color: var(--amber) !important; font-weight: 600; }
+.tab small { color: var(--mute) !important; font-size: 9.5px !important; }
+
+/* 6) 底部静态快照角标：移到右下、避开走向判断条 */
+body > div[style*="position:fixed"] {
+  left: auto !important;
+  right: 10px !important;
+  bottom: 34px !important;
+  border-radius: 1px !important;
+  border: 1px solid var(--rule) !important;
+  background: rgba(9, 14, 20, .92) !important;
+  color: var(--mute) !important;
+  font-size: 9.5px !important;
+  letter-spacing: .2px;
+}
+
+/* 7) 左栏源状态行：计数用技术字、右对齐 */
+.src-row { display: flex; align-items: center; gap: 6px; }
+.src-row .nm { font-size: 10.5px !important; }
+.src-row .ct { font-size: 10px !important; margin-left: auto; }
