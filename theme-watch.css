@@ -518,3 +518,61 @@ body > div[style*="position:fixed"] {
 .src-row { display: flex; align-items: center; gap: 6px; }
 .src-row .nm { font-size: 10.5px !important; }
 .src-row .ct { font-size: 10px !important; margin-left: auto; }
+/* ==========================================================================
+   二次修正（基于 1600x1000 实拍：顶栏换行挤压、源列表计数断行、右栏字重）
+   ========================================================================== */
+
+/* 1) 顶栏：强制单行，超出部分收起而非换行 */
+.topbar { flex-wrap: nowrap !important; overflow: hidden; }
+.brand { flex: 0 0 auto !important; min-width: 0 !important; }
+.brand .sub { display: none !important; }
+.stats { flex: 0 1 auto !important; }
+.tools { flex: 0 0 auto !important; flex-wrap: nowrap !important; overflow: hidden; align-items: center; }
+.tools > * { flex: 0 0 auto; }
+.asset-nav, .layout-tg { display: inline-flex; flex-wrap: nowrap; }
+@media (max-width: 1560px) {
+  .tools .layout-tg { display: none !important; }
+}
+@media (max-width: 1360px) {
+  .asset-nav .lt:nth-child(n+4) { display: none !important; }
+  #soundBtn { display: none !important; }
+}
+@media (max-width: 1180px) {
+  .asset-nav { display: none !important; }
+  #srcHealth { display: none !important; }
+}
+
+/* 2) 左栏源状态：名称省略号 + 计数右对齐，不再断行 */
+.src-row { display: flex !important; align-items: center !important; gap: 6px !important; white-space: nowrap; }
+.src-row .nm {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+.src-row .ct { flex: 0 0 auto !important; margin-left: auto !important; }
+.src-row .st { flex: 0 0 auto !important; order: -1; }
+
+/* 3) 右栏告警：降低字重与字号，避免与信息流抢视觉 */
+.al-title { font-size: 11.5px !important; font-weight: 500 !important; line-height: 1.55 !important; }
+.al-meta { font-size: 9.5px !important; }
+.al-meta button, .al-meta .lk { font-size: 9.5px !important; color: var(--mute) !important; }
+.alert { padding: 6px 9px !important; }
+
+/* 4) 信息流顶部分区与统计行更紧凑 */
+.feed-head { padding: 7px 12px !important; }
+.filter-bar { padding: 5px 12px !important; }
+.filter-bar, .fs-note { font-size: 10px !important; color: var(--mute) !important; }
+.fs-tag { border: 1px solid var(--rule) !important; background: none !important; color: var(--mute) !important; font-size: 9.5px !important; padding: 0 5px !important; border-radius: 1px !important; }
+.fs-tag.warn { border-color: rgba(255, 90, 95, .5) !important; color: var(--alert) !important; }
+.fs-tag.mkt { border-color: rgba(255, 176, 32, .45) !important; color: var(--amber) !important; }
+
+/* 5) 「重要事件」分组头：左侧加一条琥珀细线做分区标记 */
+.feed-sec > .danger-title, .danger-title {
+  font-size: 10px !important;
+  color: var(--alert) !important;
+  border-left: 2px solid var(--alert) !important;
+  padding-left: 8px !important;
+  margin: 6px 0 !important;
+}
